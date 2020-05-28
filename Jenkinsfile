@@ -3,8 +3,10 @@ pipeline {
 
     stages {
         stage('Initialize'){
+            sh ''' 
             echo 'PATH = ${PATH}'
             echo 'M2_HOME = ${M2_HOME}'
+            '''
         }
         stage('SCM Checkout') {
             steps {
