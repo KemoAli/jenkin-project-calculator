@@ -1,12 +1,16 @@
-pipeline {
+#!/usr/bin/env groovy
+
+pipeline  {
     agent any
 
     stages {
         stage('Initialize'){
-            sh ''' 
-            echo 'PATH = ${PATH}'
-            echo 'M2_HOME = ${M2_HOME}'
-            '''
+            steps {
+                sh ''' 
+                echo 'PATH = ${PATH}'
+                echo 'M2_HOME = ${M2_HOME}'
+                '''
+            }
         }
         stage('SCM Checkout') {
             steps {
@@ -16,8 +20,10 @@ pipeline {
             }
         }
         stage('Build'){
-            sh 'mvn clean compile'
-            echo 'Build was successful.........!'
+            steps{
+                sh 'mvn clean compile'
+                echo 'Build was successful.........!'
+            }
         }
         stage('Test') {
             steps {
